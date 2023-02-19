@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css'; //css문서에 export가 없으면 from 을 제외한다.
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 //html로 작성했던 태그들을 모두 불러옴.
 function MainPage() {
@@ -33,17 +34,19 @@ function MainPage() {
                     {products.map(function (product, index) {
                         return (
                             <div className="product-card">
-                                <div>
-                                    <img className="product-image" src={product.imageUrl} />
-                                </div>
-                                <div className="product-contents">
-                                    <span className="product-name">{product.name}</span>
-                                    <span className="product-price">{product.price}원</span>
-                                    <span className="product-seller">
-                                        <img className="product-avatar" src="images/icons/avatar.png" />
-                                        <span>그랩</span>
-                                    </span>
-                                </div>
+                                <Link className="product-link" to={`/products/${index}`}>
+                                    <div>
+                                        <img className="product-image" src={product.imageUrl} />
+                                    </div>
+                                    <div className="product-contents">
+                                        <span className="product-name">{product.name}</span>
+                                        <span className="product-price">{product.price}원</span>
+                                        <span className="product-seller">
+                                            <img className="product-avatar" src="images/icons/avatar.png" />
+                                            <span>그랩</span>
+                                        </span>
+                                    </div>
+                                </Link>
                             </div>
                         )
                     })
